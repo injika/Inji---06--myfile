@@ -1,0 +1,84 @@
+@use 'variables';
+@use 'mixins';
+
+body {
+  font-family: variables.$font-main;
+  color: variables.$color-primary;
+  background: variables.$color-bg;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  background: variables.$color-primary;
+  margin: 0 auto;
+  font-family: variables.$txt-commun;
+  @include mixins.bp('desktop') {
+    background: yellow;
+  }
+  @media (min-width: 400px) {
+    background: lime;
+  }
+}
+
+
+nav{
+  display: flex;
+  color:black;
+  justify-content: stretch;
+  text-align: center;
+  flex-flow: row wrap;
+  padding: 30px 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.logo {
+  font-family: 'bodoni';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: larger;
+  margin: 20px;
+ position: absolute;
+ left:7rem;
+}
+.logo2 {
+  font-family: 'bodoni';
+  font-style: italic;
+  
+  
+ 
+}
+.nav-menu{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap:20px;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  text-align: center;
+  align-items: center;
+  
+
+}
+.navbar{
+align-items: center;
+text-align: center;
+justify-content: center;
+display: flex;
+
+}
+
+.hero{
+margin: 0;
+background-color: #000;
+display: flex;
+align-items: center;
+text-align: center;
+height: 600px;
+
+
+}
+
