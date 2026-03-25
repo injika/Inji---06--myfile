@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="styles/main.min.css">
 </head>
 <body>
-  <header>
+  <header class="main-header">
     <nav>
       <div class="logo">Movie Kings</div>
-     
-    </div>
+        <img class="logo2" src="images/logo.svg" alt="">
+      </div>
       <div class="navbar">
         <ul class="nav-menu">
           <li><a href="#" class="nav-linko">Home</a></li>
@@ -19,19 +19,88 @@
           <li> <a href="#" class="nav-link">Results</a></li>
         </ul>
       </div>
-  
     </nav>
+    <div class="lang">
+      <a class="active">EN</a>
+      <a class="activeb">FR</a>
+    </div>
+      
   </header>
-<main>
-  <div class="hero">
-  <h1>Quote king or movie fan ?</h1>
-  <br>
-  <h2>Test your cinema knowledge by matching iconic movie quotes to their films.</h2>
-  <br>
-    <button>Start Quiz</button>
-    <button>Browse by Category</button>
-  </div>
-</main>
+  
+  <section class="hero">
+    <h1>QUOTE <span>KING</span> OR MOVIE FAN?</h1>
+    <p class="hero-p">Test your cinema knowledge by matching <br>
+      iconic movie quotes to their films.</p>
+  
+    <div class="hero-buttons">
+      <button class="btn primary">START QUIZ</button>
+      <button class="btn secondary">BROWSE BY CATEGORY</button>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <div class="circle">A</div>
+      <h3>ICONIC QUOTES</h3>
+      <p>Test your knowledge of cinema’s most memorable lines.</p>
+    </div>
+  
+    <div class="card">
+      <div class="circle">B</div>
+      <h3>TRACK PROGRESS</h3>
+      <p>Watch your score climb as you correctly identify quotes.</p>
+    </div>
+  
+    <div class="card">
+      <div class="circle">C</div>
+      <h3>GET FEEDBACK</h3>
+      <p>Receive personalized feedback based on your performance.</p>
+    </div>
+  </section>
+  
+  <section class="stats">
+    <div class="top-players">
+      <h2>Top Players This Week</h2>
+      <ol>
+        <li>Squeezi — <span>20/20</span> <time>Mar 22 <b>[ 20:21 ]</b></time></li>
+        <li>Perceptor — <span>20/20</span> <time>Mar 22 <b>[ 20:21 ]</b></time></li>
+        <li>pooo — <span>20/20</span> <time>Mar 22 <b>[ 20:21 ]</b></time></li>
+      </ol>
+    </div>
+  
+    <div class="quote">
+      <p><span> “</span>   May the Force be with you. <span>”  </span><br>
+        — Guess the movie!</p>
+      <button class="answer">REVEAL ANSWER</button>
+    </div>
+   
+  </section>
+  
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Movie Kings</h4>
+        <p>Ultimate Movie Quiz to <br>challenge your friends.</p>
+      </div>
+  
+      <div>
+        <h4>Navigation</h4>
+        <p>Home</p>
+        <p>Start Quiz</p>
+        <p>Results</p>
+      </div>
+  
+      <div>
+        <h4>Resources</h4>
+        <p>IMDb</p>
+        <p>Rotten Tomatoes</p>
+      </div>
+    </div>
+    <div class="feet">
+      <img class="footerlogo" src="images/logofooter.png" alt="">
+      <p>© 2026 Movie Kings</p>
+    </div>
+  </footer>
 
 </body>
 </html>

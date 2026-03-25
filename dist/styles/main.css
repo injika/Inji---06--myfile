@@ -58,6 +58,16 @@ a {
   font-weight: 400 900;
   font-style: italic;
 }
+@font-face {
+  font-family: "RubikGlitch";
+  src: url("webfonts/Rubik_Glitch/RubikGlitch-Regular.ttf") format("truetype-variations");
+  font-style: normal;
+}
+@font-face {
+  font-family: "RobotoSerif";
+  src: url("webfonts/RobotoSerif-Italic-VariableFont_GRAD,opsz,wdth,wght") format("truetype-variations");
+  font-style: normal;
+}
 body {
   font-family: "helvetica", Arial, sans-serif;
   color: #F00;
@@ -82,6 +92,11 @@ body {
   }
 }
 
+.main-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 nav {
   display: flex;
   color: black;
@@ -95,18 +110,22 @@ nav {
 }
 
 .logo {
-  font-family: "bodoni";
+  font-family: "Khmer MN";
   font-style: normal;
   font-weight: bolder;
-  font-size: larger;
+  font-size: x-large;
   margin: 20px;
   position: absolute;
-  left: 7rem;
+  left: 8.2rem;
+  margin-top: 30px;
 }
 
 .logo2 {
   font-family: "bodoni";
   font-style: italic;
+  position: absolute;
+  left: 7rem;
+  transform: scale(0.7);
 }
 
 .nav-menu {
@@ -119,6 +138,13 @@ nav {
   flex-flow: row wrap;
   text-align: center;
   align-items: center;
+  margin-left: 100px;
+}
+
+.nav-linko {
+  background: rgb(235, 235, 235);
+  padding: 10px 10px;
+  border-radius: 9px;
 }
 
 .navbar {
@@ -128,11 +154,234 @@ nav {
   display: flex;
 }
 
+.lang {
+  box-sizing: border-box;
+  border: none;
+  padding: 10px 10px;
+  color: #000;
+  border: none;
+  margin-top: 25px;
+  margin-right: 7rem;
+}
+
+.lang .active {
+  background: gold;
+  font-size: smaller;
+  padding: 7px 7px;
+  border-radius: 4px;
+}
+
+.activeb {
+  color: rgb(129, 130, 131);
+  font-size: smaller;
+  margin: 7px;
+}
+
 .hero {
-  margin: 0;
-  background-color: #000;
+  text-align: center;
+  padding: 80px 20px;
+  background: #001;
+  background: url("../images/pattern.svg") #373535;
+  background-size: 7rem;
+}
+
+.hero h1 {
+  font-family: "RubikGlitch", sans-serif;
+  font-size: 40px;
+  color: #fff;
+}
+
+.hero span {
+  color: gold;
+}
+
+.hero-p {
+  margin: 20px 0;
+  color: #ccc;
+  font-size: larger;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.hero-buttons {
+  margin-top: 50px;
+}
+
+.btn {
+  padding: 7px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.primary {
+  background: gold;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.secondary {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 50px 20px;
+  background: #001;
+  margin-top: -60px;
+}
+.cards h3 {
+  font-size: medium;
+}
+.cards p {
+  font-weight: 300;
+  font-size: small;
+  margin-top: 16px;
+}
+
+.card {
+  background: #eee;
+  color: black;
+  padding: 25px;
+  text-align: center;
+  width: 250px;
+}
+
+.circle {
+  background: rgb(70, 2, 158);
+  border-radius: 50%;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  margin: auto;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  background: #fff;
+  color: black;
+}
+
+.top-players span, .quote span {
+  color: #46029E;
+}
+
+.top-players li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+h2 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #46029E;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+ol {
+  display: grid;
+  list-style-type: none;
+  counter-reset: player;
+}
+ol li {
+  counter-increment: player;
+  display: grid;
+  grid-template-columns: 2rem auto 1fr minmax(8rem, 15rem);
+}
+ol li:before {
+  content: counter(player) ". ";
+  margin-inline: 0.3rem;
+}
+ol li time {
+  display: flex;
+  justify-content: end;
+}
+
+.quote {
   text-align: center;
-  height: 600px;
+  font-size: x-large;
+  font-weight: 300;
+  margin-top: 30px;
+}
+
+.answer {
+  font-size: small;
+  font-weight: 300;
+  background: #fff;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: #c9c7c7 solid 3px;
+  margin-top: 2.3rem;
+}
+
+footer {
+  background-image: url("../images/FondLignesJaunes1.png");
+  background: #222;
+  padding: 30px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(235, 235, 235);
+  margin-bottom: 50px;
+}
+
+h4 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.feet {
+  text-align: center;
+  color: rgb(235, 235, 235);
+}
+
+.footerlogo {
+  align-items: center;
+  position: absolute;
+  left: 33.5rem;
+  transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stats {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
 }/*# sourceMappingURL=main.css.map */

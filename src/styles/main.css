@@ -58,3 +58,31 @@ nav{
   justify-content: space-between;
   text-align: center;
 }
+
+.lang {
+  padding: 5px 10px;
+  border: none;
+  margin-left: 5px;
+  position: absolute;
+  left: 7rem;
+  background: orange;
+}
+
+.lang .active {
+  background: orange;
+}
+
+.hero{
+margin: 0;
+background-color: #000;
+display: flex;
+align-items: center;
+text-align: center;
+height: 600px;
+position: absolute;
+
+
+}
+h1, h2{
+  position: absolute;
+}
