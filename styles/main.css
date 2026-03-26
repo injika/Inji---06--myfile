@@ -355,38 +355,12 @@ h4 {
   transform: scale(1.2);
 }
 
-@media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-  .nav-menu {
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-  .stats {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-  .footer-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .hero h1 {
-    font-size: 28px;
-  }
+/* responsive*/
+/* Quiz page*/
+.main-header2 {
+  margin: 20px;
 }
-/* إعدادات الخطوط والألوان العامة */
+
 .stop-quiz {
   background: white;
   border: 3px solid black;
@@ -394,20 +368,22 @@ h4 {
   font-weight: bold;
   cursor: pointer;
   box-shadow: 4px 4px 0px black;
+  position: absolute;
+  right: 7rem;
+  margin-bottom: 20px;
 }
 
-/* الحاوية الصفراء الرئيسية */
 .quiz-container {
-  background-color: #f4c430; /* اللون الأصفر */
+  background-color: #f4c430;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0, 0, 0, 0.05) 20px, rgba(0, 0, 0, 0.05) 40px); /* نمط الزجزاج البسيط */
   padding: 40px 20px;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #000;
 }
 
-/* شريط التقدم */
 .progress-section {
   width: 100%;
   max-width: 800px;
@@ -430,7 +406,7 @@ h4 {
 }
 
 .progress-fill {
-  width: 10%;
+  width: 90%;
   height: 100%;
   background: #f4c430;
   border-right: 3px solid black;
@@ -499,4 +475,6 @@ h4 {
   padding: 15px 30px;
   font-weight: bold;
   cursor: not-allowed;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/* start page*/

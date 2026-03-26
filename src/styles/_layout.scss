@@ -302,43 +302,134 @@ position: absolute;
  
 }
 
-@media (max-width: 600px) {
+/* responsive*/
 
 
-  nav {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+
+
+/* Quiz page*/
+
+.main-header2{
+margin: 20px;
+
   }
-
-  .nav-menu {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero{
-    flex-direction: column;
-    text-align: center;
-  }
-
-
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stats {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .hero h1 {
-    font-size: 28px;
-  }
+.stop-quiz {
+    background: white;
+    border: 3px solid black;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px black;
+    position: absolute;
+    right: 7rem;
+    margin-bottom: 20px;
 }
+
+
+.quiz-container {
+    background-color: #f4c430; 
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.05) 20px, rgba(0,0,0,0.05) 40px); /* نمط الزجزاج البسيط */
+    padding: 40px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+}
+
+
+.progress-section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: white;
+    border: 3px solid black;
+}
+
+.progress-fill {
+    width: 90%;
+    height: 100%;
+    background: #f4c430;
+    border-right: 3px solid black;
+}
+
+/* بطاقة السؤال */
+.quiz-card {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    border: 4px solid black;
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.9);
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.question-text {
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+/* خيارات الإجابة */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option input {
+    display: none; /* إخفاء زر الراديو الأصلي */
+}
+
+.option-box {
+    display: block;
+    padding: 20px;
+    border: 3px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 4px 4px 0px black;
+}
+
+.option-box:hover {
+    background-color: #f0f0f0;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px black;
+}
+
+/* عند اختيار الإجابة */
+.option input:checked + .option-box {
+    background-color: #f4c430;
+}
+
+/* زر الإرسال */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    background-color: #eeeeee;
+    color: #aaaaaa;
+    border: 3px solid #cccccc;
+    padding: 15px 30px;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* start page*/
+

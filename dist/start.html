@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start quiz</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    
+<div class="quiz-overlay" id="quizOverlay">
+  <div class="quiz-card">
+
+    <h2>SELECT CATEGORY</h2>
+
+    <p>
+      Choose a movie category to focus your quiz,<br>
+      or select "All Categories" for a mixed experience.
+    </p>
+
+    <div class="categories">
+      <button class="cat active">ALL CATEGORIES</button>
+      <button class="cat">ACTION</button>
+      <button class="cat">DRAMA</button>
+      <button class="cat">THRILLER</button>
+      <button class="cat">ROMANCE</button>
+      <button class="cat">SCI-FI</button>
+      <button class="cat">FANTASY</button>
+    </div>
+
+    <div class="actions">
+      <button class="cancel">CANCEL</button>
+      <button class="start">START QUIZ</button>
+    </div>
+
+  </div>
+</div>
+<script>
+const overlay = document.getElementById("quizOverlay");
+const openBtn = document.querySelector(".btn.primary"); 
+const cancelBtn = document.querySelector(".cancel");
+
+
+openBtn.addEventListener("click", () => {
+  overlay.classList.add("active");
+});
+
+
+cancelBtn.addEventListener("click", () => {
+  overlay.classList.remove("active");
+});
+
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    overlay.classList.remove("active");
+  }
+});
+</script>
+</body>
+</html>
