@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Overlay</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ─── OVERLAY BACKDROP ─── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+     background-color: #151515; 
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(186, 168, 4, 0.05) 20px, rgba(0,0,0,0.05) 40px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(3px);
+  }
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ─── MODAL BOX ─── */
+  .modal {
+    background: #181818;
+    border: 1px solid #2c2c2c;
+    width: 310px;
+    padding: 26px 22px 28px;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform 0.3s cubic-bezier(.22,1,.36,1);
+  }
+  .overlay.active .modal {
+    transform: translateY(0);
+  }
+
+  /* Yellow top bar */
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #F5C518;
+  }
+
+  /* PROFILE stamp */
+  .profile-stamp {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F5C518;
+    color: #111;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.2em;
+    padding: 3px 18px;
+    white-space: nowrap;
+    line-height: 1.6;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px; right: 12px;
+    background: none; border: none;
+    color: #555; font-size: 1rem;
+    cursor: pointer; line-height: 1;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .close-btn:hover { color: #fff; }
+
+  /* Title */
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    margin-bottom: 3px;
+    margin-top: 6px;
+  }
+  .modal-sub {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 22px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── CHARACTER GRID ─── */
+  .characters {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .char-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .char-ring {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 2.5px solid #2c2c2c;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, transform 0.2s;
+    overflow: hidden;
+  }
+
+  .char-ring img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    transition: transform 0.2s;
+    display: block;
+  }
+
+  .char-option:hover .char-ring {
+    border-color: rgba(245,197,24,0.45);
+    transform: translateY(-3px);
+  }
+
+  .char-option.selected .char-ring {
+    border-color: #F5C518;
+    background: #1d1d1d;
+  }
+  .char-option.selected .char-ring img {
+    transform: scale(1.07);
+  }
+
+  /* ─── DOTS ─── */
+  .dot-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .dot-wrap {
+    width: 82px;
+    display: flex;
+    justify-content: center;
+  }
+  .dot-inner {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    background: transparent;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .dot-inner.active {
+    background: #F5C518;
+    border-color: #F5C518;
+  }
+
+  /* ─── NICKNAME ─── */
+  .field-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .nickname-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #2e2e2e;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    padding: 5px 0 7px;
+    outline: none;
+    caret-color: #F5C518;
+    transition: border-color 0.2s;
+    margin-bottom: 20px;
+  }
+  .nickname-input:focus { border-bottom-color: #F5C518; }
+  .nickname-input::placeholder { color: #383838; }
+
+  /* ─── START BUTTON ─── */
+  .start-btn {
+    display: block; width: 100%;
+    background: #F5C518;
+    color: #111;
+    border: none;
+    padding: 11px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(245,197,24,0.35);
+  }
+  .start-btn:active { transform: translateY(0); }
+  .start-btn:disabled {
+    background: #2a2a2a;
+    color: #484848;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+
+</style>
+</head>
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay active" id="overlay">
+  <div class="modal" id="modal">
+
+    <div class="profile-stamp">PROFILE</div>
+    <a class="close-btn" href="index.html" aria-label="Back to main page">&#x2715;</a>
+
+    <h2 class="modal-title">WHO ARE YOU ?</h2>
+    <p class="modal-sub">Are you a king, a binari or a quiz ?</p>
+
+    <div class="characters" id="characters">
+      <div class="char-option" data-char="king" onclick="selectChar(this)">
+        <div class="char-ring">
+          <img src="images/king.svg" alt="King">
+        </div>
+      </div>
+      <div class="char-option selected" data-char="binari" onclick="selectChar(this)">
+        <div class="char-ring">
+          <img src="images/binari.svg" alt="Binari">
+        </div>
+      </div>
+      <div class="char-option" data-char="queen" onclick="selectChar(this)">
+        <div class="char-ring">
+          <img src="images/queen.svg" alt="Queen">
+        </div>
+      </div>
+    </div>
+
+    <div class="dot-row">
+      <div class="dot-wrap"><div class="dot-inner" id="dot-king"></div></div>
+      <div class="dot-wrap"><div class="dot-inner active" id="dot-binari"></div></div>
+      <div class="dot-wrap"><div class="dot-inner" id="dot-queen"></div></div>
+    </div>
+
+    <p class="field-label">Nickname</p>
+    <input
+      class="nickname-input"
+      id="nicknameInput"
+      type="text"
+      placeholder=""
+      oninput="checkForm()"
+    />
+
+    <button class="start-btn" id="modalStartBtn" onclick="startQuiz()" disabled>
+      START QUIZ
+    </button>
+
+  </div>
+</div>
+
+<script>
+  let selectedChar = 'binari';
+
+  function openOverlay() {
+    document.getElementById('overlay').classList.add('active');
+    setTimeout(function() { document.getElementById('nicknameInput').focus(); }, 50);
+  }
+
+  function closeOverlay() {
+    document.getElementById('overlay').classList.remove('active');
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('overlay')) closeOverlay();
+  }
+
+  function selectChar(el) {
+    document.querySelectorAll('.char-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    selectedChar = el.dataset.char;
+    document.querySelectorAll('.dot-inner').forEach(function(d) { d.classList.remove('active'); });
+    document.getElementById('dot-' + selectedChar).classList.add('active');
+  }
+
+  function checkForm() {
+    var val = document.getElementById('nicknameInput').value.trim();
+    document.getElementById('modalStartBtn').disabled = val.length === 0;
+  }
+
+  function startQuiz() {
+    var nickname = document.getElementById('nicknameInput').value.trim();
+    if (!nickname) return;
+    window.location.href = 'quiz.html?nickname=' + encodeURIComponent(nickname) + '&char=' + encodeURIComponent(selectedChar);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeOverlay();
+  });
+</script>
+</body>
+</html>
